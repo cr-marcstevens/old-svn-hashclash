@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="7">
+<project_config class_id="0" tracking_level="0" version="2">
+	<birthdaysearch_config class_id="1" tracking_level="0" version="1">
+		<cell_nr_spu_threads>6</cell_nr_spu_threads>
+		<hybridbits>0</hybridbits>
+		<log_traillength>-1</log_traillength>
+		<max_blocks>9</max_blocks>
+		<max_memory>16</max_memory>
+		<mem_hardlimit>0</mem_hardlimit>
+		<path_type_range>2</path_type_range>
+		<use_cell>1</use_cell>
+		<use_cuda>1</use_cuda>
+	</birthdaysearch_config>
+	<diffpathbackward_config class_id="2" tracking_level="0" version="0">
+		<count>3</count>
+		<item_version>1</item_version>
+		<item class_id="3" tracking_level="0" version="1">
+			<ab_estimate_factor>2</ab_estimate_factor>
+			<ab_naf_estimate>8</ab_naf_estimate>
+			<ab_nr_diffpaths>65536</ab_nr_diffpaths>
+			<cond_tend>35</cond_tend>
+			<fill_fraction>1</fill_fraction>
+			<half_naf_weight>1</half_naf_weight>
+			<include_naf>0</include_naf>
+			<max_conditions>9999</max_conditions>
+			<max_Q26up_cond>0</max_Q26up_cond>
+			<max_sdr_weight>10</max_sdr_weight>
+			<max_sdrs>16</max_sdrs>
+			<min_sdr_weight>0</min_sdr_weight>
+			<no_verify>0</no_verify>
+			<t_range>4</t_range>
+			<t_step>34</t_step>
+		</item>
+		<item>
+			<ab_estimate_factor>2</ab_estimate_factor>
+			<ab_naf_estimate>8</ab_naf_estimate>
+			<ab_nr_diffpaths>500000</ab_nr_diffpaths>
+			<cond_tend>35</cond_tend>
+			<fill_fraction>1</fill_fraction>
+			<half_naf_weight>1</half_naf_weight>
+			<include_naf>0</include_naf>
+			<max_conditions>9999</max_conditions>
+			<max_Q26up_cond>0</max_Q26up_cond>
+			<max_sdr_weight>10</max_sdr_weight>
+			<max_sdrs>16</max_sdrs>
+			<min_sdr_weight>0</min_sdr_weight>
+			<no_verify>0</no_verify>
+			<t_range>12</t_range>
+			<t_step>29</t_step>
+		</item>
+		<item>
+			<ab_estimate_factor>2</ab_estimate_factor>
+			<ab_naf_estimate>8</ab_naf_estimate>
+			<ab_nr_diffpaths>500000</ab_nr_diffpaths>
+			<cond_tend>35</cond_tend>
+			<fill_fraction>1</fill_fraction>
+			<half_naf_weight>1</half_naf_weight>
+			<include_naf>0</include_naf>
+			<max_conditions>9999</max_conditions>
+			<max_Q26up_cond>0</max_Q26up_cond>
+			<max_sdr_weight>12</max_sdr_weight>
+			<max_sdrs>2048</max_sdrs>
+			<min_sdr_weight>6</min_sdr_weight>
+			<no_verify>0</no_verify>
+			<t_range>0</t_range>
+			<t_step>16</t_step>
+		</item>
+	</diffpathbackward_config>
+	<diffpathconnect_config class_id="4" tracking_level="0" version="2">
+		<max_complexity>-9999</max_complexity>
+		<no_enhance_path>0</no_enhance_path>
+		<no_verify>0</no_verify>
+		<Qcond_start>20</Qcond_start>
+		<show_statistics>0</show_statistics>
+		<t_step>12</t_step>
+		<abortafterXmin>-1</abortafterXmin>
+	</diffpathconnect_config>
+	<diffpathforward_config class_id="5" tracking_level="0" version="0">
+		<count>1</count>
+		<item_version>1</item_version>
+		<item class_id="6" tracking_level="0" version="1">
+			<ab_estimate_factor>4</ab_estimate_factor>
+			<ab_naf_estimate>8</ab_naf_estimate>
+			<ab_nr_diffpaths>1000000</ab_nr_diffpaths>
+			<cond_tbegin>-3</cond_tbegin>
+			<fill_fraction>1</fill_fraction>
+			<half_naf_weight>1</half_naf_weight>
+			<include_naf>0</include_naf>
+			<max_conditions>9999</max_conditions>
+			<max_sdr_weight>14</max_sdr_weight>
+			<max_sdrs>16</max_sdrs>
+			<min_Q314_tunnel>0</min_Q314_tunnel>
+			<min_Q456_tunnel>18</min_Q456_tunnel>
+			<min_Q91011_tunnel>18</min_Q91011_tunnel>
+			<min_sdr_weight>0</min_sdr_weight>
+			<no_verify>0</no_verify>
+			<normalt01>1</normalt01>
+			<t_range>10</t_range>
+			<t_step>1</t_step>
+		</item>
+	</diffpathforward_config>
+	<filename1 class_id="7" tracking_level="0" version="0">
+		<string>./gtkmm-vc90-2_4.vsprops</string>
+	</filename1>
+	<filename2>
+		<string>./gtkmm-vc90-d-2_4.vsprops</string>
+	</filename2>
+	<intermediate_collfiles class_id="8" tracking_level="0" version="0">
+		<count>0</count>
+		<item_version>0</item_version>
+	</intermediate_collfiles>
+	<delta_m11>
+		<count>0</count>
+		<item_version>0</item_version>
+	</delta_m11>
+	<max_threads>2</max_threads>
+	<workdir>
+		<string>.</string>
+	</workdir>
+	<mode_automatic>0</mode_automatic>
+</project_config>
+</boost_serialization>
+

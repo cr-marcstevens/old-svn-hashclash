@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>                                                        
+<Project ToolsVersion='4.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>      
+  <ImportGroup Label='PropertySheets' />                                                        
+  <PropertyGroup Label='UserMacros' />                                                          
+  <PropertyGroup>                                                                                 
+    <IncludePath>$(IncludePath);C:\Project HashClash\VS2010\boost.1.52.0;..\src\libhashutil5</IncludePath>                  
+    <LibraryPath>$(LibraryPath);C:\Project HashClash\VS2010\boost.1.52.0\lib32;$(Configuration)\</LibraryPath>              
+  </PropertyGroup>                                                                                
+  <ItemDefinitionGroup />                                                                         
+  <ItemGroup />                                                                                   
+</Project>                                                                                        

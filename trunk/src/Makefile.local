@@ -1,0 +1,50 @@
+## these settings are machine and *nix distribution dependent
+
+## suffix for the Boost C++ libraries, i.e. "-gcc41-mt-s-1_39"
+SBL               = 
+BOOST_LIBVER      = 1_57_0
+
+## Older boost version 1.43.0, required for reading provided binary data files
+## patched to prevent compiler errors due to system definition of TIME_UTC
+## may have problems with newer compilers
+## on my system (i7-2600, FC18, gcc 4.7.2) it thought that it didn't have pthreads unless I added -D_GLIBCXX__PTHREADS to CPPFLAGS below
+#BOOST_LIBVER      = 1_43_0p
+
+
+## additional header and libraries directories
+INCLUDEDIRS       = -I ../libhashutil5 -I ../boost_$(BOOST_LIBVER) -I $(GCCLOCAL)/include
+LIBDIRS           = -L ../libhashutil5 -L ../boost_$(BOOST_LIBVER)/stage/lib -L $(GCCLOCAL)/lib
+
+LIBS              = -lpthread -lhashutil5-mt -lboost_thread -lboost_serialization -lboost_program_options -lboost_filesystem -lboost_iostreams -lboost_system
+ifdef GCCLOCAL
+LIBS		 += -lboost_zlib -lboost_bzip2
+else
+LIBS             += -lz -lbz2
+endif
+
+CXX		 ?= g++
+CPP               = $(CXX) -pthread $(INCLUDEDIRS) $(LIBDIRS)
+CPPFLAGS          = -march=native -O2 -pthread -std=c++11
+CPPFLAGSD         = -ggdb
+
+## CELL defines, uncomment these lines to build for the CELL platform (i.e. the PlayStation 3)
+#CELLINCLUDEDIRS  = -I /var/ps3/usr/include
+#CELLLIBDIRS      = -L /var/ps3/usr/lib64
+#CPP               = powerpc64-unknown-linux-gnu-g++ -static -pthread $(INCLUDEDIRS) $(LIBDIRS) $(CELLINCLUDEDIRS) $(CELLLIBDIRS)
+#CPPFLAGS          = -mcpu=powerpc64 -maltivec -m64 -O3 -DUSE_CELL
+## do not change the cell suffix
+#CELLSUFFIX        = _cell
+
+## CUDA defines, uncomment these lines to enable CUDA builds
+#CUDA_TK           = ~/src/cuda
+#CUDA_SDK          = ~/src/CUDA_SDK
+#CUDA_CPP          = $(CUDA_TK)/bin/nvcc
+#### CUDA TK 3.0 w/ gcc 4.4.0+ doesn't work without the -D__builtin_stdarg_start=__builtin_va_start
+#### also comment out the conflicting 3 lines in $(CUDA_TK)/include/math_functions.h
+#CUDA_FIX	  = -Xcompiler -D__builtin_stdarg_start=__builtin_va_start 
+#CUDA_CPPFLAGS     = -O2 -DUNIX --compiler-options -fno-strict-aliasing -Xcompiler "$(CPPFLAGS) $(INCLUDEDIRS)" $(INCLUDEDIRS) -I $(CUDA_TK)/include -I $(CUDA_SDK)/C/common/inc -I $(CUDA_SDK)/shared/inc  $(INCLUDES) 
+#CUDA_CPPFLAGS_10  = $(CUDA_CPPFLAGS) -gencode=arch=compute_10,code=\"sm_10,compute_10\"
+#CUDA_CPPFLAGS_11  = $(CUDA_CPPFLAGS) -gencode=arch=compute_11,code=\"sm_11,compute_11\"
+#CUDA_CPPFLAGS_13  = $(CUDA_CPPFLAGS) -gencode=arch=compute_13,code=\"sm_13,compute_13\"
+#CUDA_CPPFLAGS_20  = $(CUDA_CPPFLAGS) -gencode=arch=compute_20,code=\"sm_20,compute_20\"
+#CUDA_LINKFLAGS    = -fPIC -L $(CUDA_TK)/lib64 -L $(CUDA_SDK)/C/lib -L $(CUDA_SDK)/C/common/lib/linux -L $(CUDA_SDK)/shared/lib -lcudart -lcutil_x86_64 -lshrutil_x86_64 $(LIBRARIES)

@@ -1,0 +1,70 @@
+#summary chosen-prefix collision GUI help
+#labels Featured
+
+= Chosen-Prefix Collision GUI Help =
+
+In July 2010, a GUI beta version was released that helps you to generate chosen-prefix collisions. This page describes how to use this GUI
+
+== Basic Usage ==
+  # When you know you have a 64bit windows start '`run GUI 64bit.bat`', otherwise simply start '`run GUI 32bit.bat`'.
+  # Start a new project and select your 2 chosen-prefix files and create a *new* working directory.
+  # Leave the "Configuration" page as is for now.
+  # Go to the "Birthday Search" page and click "Start".
+  # When the birthday search has finished a new page "N.C. 0" will appear.
+  # Go to the new Near-Collision (N.C.) page.
+  # Click "Run Forward" and wait till it finishes.
+  # Click "Run Backward" and wait till it finishes.
+  # Click "Run Connect" and wait till it finishes (or to go a bit faster click "Abort" after about 1 or 2 cpuhours or set the parameter "Abort after # cpucore minutes" accordingly).
+  # Click "Run Coll.Find" and wait till it finishes. 
+  # When a new Near-Collision page appears repeat the above 5 steps.
+  # The resulting 2 colliding files can be found in your working directory as the 2 latest files.
+  # Close the GUI.
+
+== Retrying a Near-Collision ==
+In some cases the collision search ("Run Coll.Find") will take a very long time (> 4 cpu hours). In that case you might want to retry the near-collision:
+  # Click "Abort" to stop the current collision search.
+  # Go to the previous page.
+  # Click "Run Coll.Find" (or "Start" in the case of the "Birthday Search" page).
+  # Wait till it finishes and go back to the last near-collision page.
+  # Continue with step 7 under "Basic Usage" above.
+
+== Common Problems ==
+  * _The forward or backward step aborts with a "bad allocation" error:_
+  The program runs out of memory. Possible solutions:
+    # In the "Configuration Page" lower the "Autobalance: # diff paths" parameter for the problem forward or backward step.
+    # Install more RAM.
+    # Use the 64bit version if RAM >= 4GB
+
+== Configuration Options ==
+=== Project Details ===
+  * _"Set maximum # threads"_: all programs are multi-threaded, this limits the number of worker threads for all programs. For a new project this is automatically set to the number of cpu cores of your system.
+  * _"Set automatic mode"_: Enables the automatic start of the next step in the GUI. This can be interrupted by clicking the abort button and will be continued when a step is manually started. Don't forget to set "Abort after # cpucore minutes" for the connect step.
+
+=== Birthday search options ===
+===== Memory considerations =====
+Using not enough memory will result in a higher estimated runtime complexity, whereas using too much memory will increase overhead in the computations and slightly increases estimated runtime complexity. The _"Estimated complexity"_ shows the average and 2*average(cost to generate twice as many birthday collisions) estimated complexity in # MD5 compressions. These numbers consist of 2 components: _trails_ and _collisions_. The _collisions_ component can be lowered by increasing the memory usage. So ideally these complexities are almost equal to the _trails_ component in which case these complexities differ by 0.5 in the exponent.
+*Bottomline*: if these complexities differ by more than 0.5 in the exponent it is wise to increase memory usage.
+
+  * _"Hybrid bits"_: Default value 0. Range 0-32. Higher values results in lower memory requirements and higher runtime complexity.
+  * _"Path type range"_: Default value 2. Range 0-5. Higher values result in lower birthday complexity and higher near-collision block search complexity.
+  * _"Maximum # blocks"_: Default value 9. Range 1-16. Lower values result in higher birthday complexity and fewer near-collision blocks.
+  * _"Maximum # MB memory to use"_: The amount of memory to use. See memory considerations above.
+=== Connect options ===
+  * _"Connect beginstep t="_: Default value 12. Range 3-14. This value t determines over which 4 steps (t, t+1, t+2, t+3) it will connect the diff.paths from the forward and backward step. The last forward step *must* be t-1 (default 11) and the last backward step *must* be t+4 (default 16).
+  * _"Abort after # cpucore minutes"_: Defaults to -1 (disabled). For positive values X, this will automatically abort the connect step after the number of X/#threads minutes. Currently recommended value: between 120 and 240 minutes.
+=== Forward options ===
+This configuration consists of 1 or more subpages, each runs 1 or more steps with the same sub-configuration. The steps from the subpages must form a sequence starting with 1 ending with "connect beginstep"-1 with steps of +1. E.g.: 1-3,4,5,6-10,11. Not 1-3,3-11 or 1-3,5-11.
+  * _"First step t="_: First step to run.
+  * _"Last step t="_: Last step to run.
+  * _"Maximum SDR weight"_: Default value 14. Limits which SDRs to use.
+  * _"Maximum # SDRs"_: Default value 160: Limits which SDRs to use.
+  * _"Autobalance: # diff.paths"_: Default value 1000000. The number of diff.paths to generate. Higher is better, but requires more memory. Lower this value in case of memory problems.
+  * _"Minimum Q_{4,5,6} tunnelstrength"_: Default value 19. Only keeps diff.paths with this minimum tunnelstrength over Q,,4,,, Q,,5,,, Q,,6,,. Higher is better, however too high values can result in no or bad performing diff.paths.
+  * _"Minimum Q_{9,10,11} tunnelstrength"_: Default value 19. Only keeps diff.paths with this minimum tunnelstrength over Q,,9,,, Q,,10,,, Q,,11,,. Higher is better, however too high values can result in no or bad performing diff.paths.
+=== Backward options ===
+This configuration consists of 1 or more subpages, each runs 1 or more steps with the same sub-configuration. The steps from the subpages must form a sequence starting with 34 ending with "connect beginstep"+4 with steps of -1. E.g.: 30-34,17-29,16. 
+  * _"First step t="_: First step to run.
+  * _"Last step t="_: Last step to run.
+  * _"Maximum SDR weight"_: Default value 14. Limits which SDRs to use.
+  * _"Maximum # SDRs"_: Default value 160: Limits which SDRs to use.
+  * _"Autobalance: # diff.paths"_: Default value 1000000. The number of diff.paths to generate. Higher is better, but requires more memory. Lower this value in case of memory problems.

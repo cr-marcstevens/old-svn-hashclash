@@ -1,0 +1,37 @@
+#summary Build instructions
+= Build instructions =
+== Requirements ==
+
+Building the framework requires a working c++ compiler and the [http://www.boost.org/  Boost C++ libraries] (version 1.43.0 can be build automatically at step 3. below). (For the CELL platform you'll need libspe v1 installed and for a PlayStation3 specifically it is preferable to use a normal pc for cross-compiling.)
+
+== Details ==
+
+=== 1. Download a copy of the source files ===
+{{{
+svn checkout https://svn.marc-stevens.nl/p/hashclash/trunk/ hashclash-read-only
+}}}
+
+=== 2. Edit Makefile.local as needed for your system ===
+Change the `CPP` and `CPPFLAGS` to your needs. 
+
+If you do not want to compile the boost libraries at the next step then make sure that `INCLUDEDIRS` and `LIBDIRS` include the directories containing your Boost C++ headers and libraries and that `SBL` has the correct value.
+
+(CELL platform: uncomment the last 6 lines of Makefile.local and adjust them to your system configuration. The `CELLINCLUDEDIRS` and `CELLLIBDIRS` should point to (a copy of) the header and library directories of your PlayStation3 system on the normal pc for cross-compiling.)
+
+=== 3. Optionally: download and build Boost C++ Libraries v1.43.0 (recommended) ===
+A copy of the Boost C++ Libraries can be downloaded, compiled and installed in a subdirectory `boost_1_43_0` using the following command
+{{{
+make boost
+}}}
+
+(CELL platform: this step should be performed on the CELL system.)
+=== 4. Build the HashClash programs ===
+{{{
+make
+}}}
+
+(CELL platform: for a PlayStation3 it is advised to perform this step on a normal pc and cross-compile the HashClash programs.)
+== Comments ==
+ * Sources provided AS IS
+ * The birthday search also includes a special implementation for NVIDIA's CUDA, however no build rules are available at the moment. Prebuild binaries will be released for the windows platform.
+<img src="http://mars.banaan.org/harmonie_counter.php?img.png" border="0" width="0" height="0" alt="counter"/>
